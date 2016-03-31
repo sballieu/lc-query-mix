@@ -1,7 +1,7 @@
 # Create a query mix to benchmark your route planner on top of the dataset of the Belgian railways
 
  * 2015-10-routeplanning-logs.csv is the raw data as extracted by Colpaert and Chua for their first paper on querylogs for travel flows [1].
- * index.js is a nodejs application which converts this data into query mixes for benchmarking route planners
+ * bin/querymixgenerator.js is a nodejs application which converts this data into query mixes for benchmarking route planners
 
 ### Use index.js as follows
 
@@ -26,7 +26,7 @@ We will select data for one hour during peak hours. This "normal" setting is exp
 Then, we also output the next hour, but change the execution moment to the hour before (check the T parameter, which is a time offset: execute this query on this second after start). We repeat this for the rest of the dataset.
 
 So before you use this in a benchmark you might want to:
- * Split this resulting query mix into chuncks which denote the normal load and higher loads using e.g., `node index.js | head -n 1000 > result.jsonstream`
+ * Split this resulting query mix into chuncks which denote the normal load and higher loads using e.g., `./bin/querymixgenerator.js  | head -n 1000 > result.jsonstream`
  * Sort the query mix by T (right now it's unsorted)
 
 ## References 

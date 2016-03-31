@@ -1,3 +1,4 @@
+#!/usr/bin/node
 var csv = require('fast-csv'),
     fs = require('fs'),
     moment = require('moment');

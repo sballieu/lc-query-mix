@@ -27,5 +27,4 @@ So before you use this in a benchmark you might want to:
 
 ## References 
 
-[1] Colpaert, P., Chua, A., Verborgh, R., Mannens, E., Van de Walle, R., and Vande Moere, A. (2016). What Public Transit API Logs Tell Us about Travel Flows. WWW '16: 25th International World Wide
-Web Conference http://dx.doi.org/10.1145/2872518.2891069
+[1] Colpaert, P., Chua, A., Verborgh, R., Mannens, E., Van de Walle, R., and Vande Moere, A. (2016). What Public Transit API Logs Tell Us about Travel Flows. WWW '16: 25th International World Wide Web Conference http://dx.doi.org/10.1145/2872518.2891069

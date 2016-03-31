@@ -19,7 +19,8 @@ var csvStream = csv({headers:true})
         object.T =  delta % 3600; //When to execute a request
         object.departureStop = data.from_id;
         object.arrivalStop = data.to_id;
-        object.departureTime = new Date((data.requested_datetime || data.datetime) - delta * 1000);
+        //Round the departure time by minute
+        object.departureTime = new Date(Math.round(((data.requested_datetime || data.datetime) - delta * 1000)/1000)*1000);
         object.originalDepartureTime = data.requested_datetime || data.datetime;
         console.log(JSON.stringify(object));
       }

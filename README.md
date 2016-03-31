@@ -5,7 +5,11 @@
 
 ### Use index.js as follows
 
-_TODO_
+```bash
+node index.js | head -n 1000 > result.jsonstream
+```
+
+This will give you 1000 JSON objects, newline delimited in a file result.jsonstream.
 
 ## Why the Belgian railways?
 

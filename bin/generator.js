@@ -26,7 +26,9 @@ var csvStream = csv({headers:true})
         //Round the departure time by minute
         object.departureTime = new Date(Math.round(((data.requested_datetime || data.datetime) - object.round * interval * 1000)/1000)*1000);
         object.originalDepartureTime = data.requested_datetime || data.datetime;
-        console.log(JSON.stringify(object));
+        if (object.departureTime) {
+          console.log(JSON.stringify(object));
+        }
       }
     })
     .on("end", function() {

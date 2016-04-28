@@ -2,12 +2,12 @@
   "name": "lc-querymix",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bin/generator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Pieter Colpaert <pieter.colpaert@ugent.be>",
+  "license": "MIT",
   "dependencies": {
     "fast-csv": "^1.0.0",
     "jsonstream": "^1.0.3"

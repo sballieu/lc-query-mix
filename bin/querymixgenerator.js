@@ -10,7 +10,8 @@ var config;
 
 program
     .version('0.1.0')
-    .option('-f --filter [string]', 'filter on user agent')
+    .option('-f --filter [string]' , 'filter on user agent')
+    .option('-w --wheelchairprop [int]' , 'proportion of queries that are wheelchair accessible')
     .arguments('<configFile>')
     .action(function (query) {
         try {
@@ -27,8 +28,12 @@ if (!config) {
     process.exit();
 }
 
-var user_agent_filter = program.filter|| "";
+var user_agent_filter = program.filter || "";
 user_agent_filter = user_agent_filter.toLowerCase();
+var wha = program.wheelchairprop;
+if(!wha) {
+ wha = 0;
+}
 
 var stream = fs.createReadStream(config.queries_file);
 
@@ -50,6 +55,7 @@ var csvStream = csv({headers:true})
         //Round the departure time by minute
         object.departureTime = new Date(Math.round(((data.requested_datetime || data.datetime) - delta * 1000)/1000)*1000);
         object.originalDepartureTime = data.requested_datetime || data.datetime;
+        object.wha = (Math.random()*100 <=  wha);
         console.log(JSON.stringify(object));
       }
     })

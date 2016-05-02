@@ -1,15 +1,23 @@
 # Create a query mix to benchmark your route planner on top of the dataset of the Belgian railways
 
  * 2015-10-routeplanning-logs.csv is the raw data as extracted by Colpaert and Chua for their first paper on querylogs for travel flows [1].
- * bin/querymixgenerator.js is a nodejs application which converts this data into query mixes for benchmarking route planners
+ * bin/generator.js is a nodejs application which converts this data into query mixes for benchmarking route planners
 
-### Use index.js as follows
+**This code is only generating the query mixes for a different repository: https://github.com/pietercolpaert/belgianrail-query-load**
+
+### Use bin/generate.js as follows
 
 ```bash
-node index.js | head -n 1000 > result.jsonstream
+node bin/generate.js | sort -n -t: -k2 > results.jsonstream
 ```
 
-This will give you 1000 JSON objects, newline delimited in a file result.jsonstream.
+This will give you newline delimited json query object in a file result.jsonstream.
+
+If you want to put these in buckets, we wrote a script at `bin/bucketize.sh` which does this exactly: it will split the query mix over different files.
+
+```
+./bin/bucketize.sh 100 queries/ < results.jsonstream
+```
 
 ## Why the Belgian railways?
 
@@ -20,14 +28,6 @@ A second, more important reason, is that the iRail project publishes their own s
 ## The idea
 
 We make query mixes based on real query logs of the iRail API, which can be downloaded at https://hello.irail.be/query-logs. The real query logs will be transformed into a format that can be used as an input to a benchmark.
-
-We will select data for one hour during peak hours. This "normal" setting is expected to cause a reasonable load on both clients and server, as we were able to handle it on the iRail server. If this is not the case, we should draw our conclusions here.
-
-Then, we also output the next hour, but change the execution moment to the hour before (check the T parameter, which is a time offset: execute this query on this second after start). We repeat this for the rest of the dataset.
-
-So before you use this in a benchmark you might want to:
- * Split this resulting query mix into chuncks which denote the normal load and higher loads using e.g., `./bin/querymixgenerator.js  | head -n 1000 > result.jsonstream`
- * Sort the query mix by T (right now it's unsorted)
 
 ## References 
 
